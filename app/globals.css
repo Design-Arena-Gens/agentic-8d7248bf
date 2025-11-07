@@ -1,0 +1,70 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-start: #0b0f14;
+  --bg-end: #0f141b;
+  --glass-bg: rgba(255, 255, 255, 0.04);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --neon-cyan: #00f0ff;
+  --neon-blue: #3b82f6;
+}
+
+html, body, :root {
+  height: 100%;
+}
+
+body {
+  @apply bg-base-900 text-white antialiased font-inter;
+  background: radial-gradient(1200px 600px at 10% -10%, rgba(0, 240, 255, 0.08), transparent),
+              radial-gradient(1200px 600px at 110% 10%, rgba(59, 130, 246, 0.08), transparent),
+              linear-gradient(180deg, var(--bg-start), var(--bg-end));
+}
+
+.glass {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.35), 0 0 40px rgba(0, 240, 255, 0.05);
+  backdrop-filter: blur(10px);
+}
+
+.outline-gradient {
+  position: relative;
+}
+
+.outline-gradient:before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(0,240,255,0.5), rgba(59,130,246,0.5));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.gradient-text {
+  background: linear-gradient(90deg, var(--neon-cyan), var(--neon-blue));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.link-underline {
+  background-image: linear-gradient(90deg, var(--neon-cyan), var(--neon-blue));
+  background-size: 0% 2px;
+  background-repeat: no-repeat;
+  background-position: left bottom;
+  transition: background-size 200ms ease;
+}
+
+.link-underline:hover {
+  background-size: 100% 2px;
+}
+
+.container-grid {
+  @apply max-w-6xl mx-auto px-4 sm:px-6 lg:px-8;
+}
